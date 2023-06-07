@@ -69,20 +69,22 @@ async def inline_button(message: types.Message):
     builder.row(types.InlineKeyboardButton(
         text= "GitHub", url= "https://github.com/"
     ))
+    builder.row(types.InlineKeyboardButton(
+        text="Telegram", url="tg://resolve?domain=telegram"
+    ))
 
-    user_id =  450118743
+    user_id = 450118743
     chat_info = await bot.get_chat(user_id)
     if not chat_info.has_private_forwards:
         builder.row(types.InlineKeyboardButton(
-                text="Какой-то пользователь",
-                url=f"tg://user?id={user_id}"
-     ))
+            text="Кто-то",
+            url= f"tg://user?id = {user_id}"
+        ))
+    
     await message.answer(
         "Выберите ссылку",
         reply_markup=builder.as_markup(),
     )
-
-
 # @dp.message()
 # async def text(message: types.Message):
 #     await message.answer(message.text)
